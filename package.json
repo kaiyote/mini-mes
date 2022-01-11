@@ -8,14 +8,19 @@
     "lint": "concurrently npm:lint:*",
     "lint:js": "eslint . --ext .ts,.tsx",
     "lint:css": "stylelint './src/**/*.style.{ts,tsx}'",
-    "test": "jest"
+    "test": "API_HOST=http://127.0.0.1:1234 jest"
   },
   "dependencies": {
+    "custom-env": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@pact-foundation/pact": "^9.17.1",
     "@stylelint/postcss-css-in-js": "^0.37.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -27,12 +32,15 @@
     "@typescript-eslint/parser": "^5.9.1",
     "@vitejs/plugin-react": "^1.0.7",
     "concurrently": "^7.0.0",
+    "cross-fetch": "^3.1.4",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-jest-dom": "^4.0.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-testing-library": "^5.0.3",
     "jest": "^27.4.7",
+    "jest-pact": "^0.9.1",
+    "nock": "^13.2.2",
     "stylelint": "^14.2.0",
     "stylelint-config-recommended": "^6.0.0",
     "stylelint-config-styled-components": "^0.1.1",
