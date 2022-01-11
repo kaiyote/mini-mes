@@ -1,5 +1,5 @@
 import { fetchStatus, SET_STATUS, startJob, START_NEW_REACTOR, toggleValve, TOGGLE_VALVE } from '../actions'
-import { State, ValveStatus, ValveType } from '../state'
+import { initialState, State, ValveStatus, ValveType } from '../state'
 import nock from 'nock'
 
 interface EachArgs {
@@ -9,18 +9,8 @@ interface EachArgs {
 }
 
 const stubState: State = {
-  reactorId: 1,
-  status: {
-    fillLevel: 0,
-    pHRange: [0, 0],
-    pressureRange: [0, 0],
-    success: false,
-    temperatureRange: [0, 0]
-  },
-  valves: {
-    input: 'closed',
-    output: 'closed'
-  }
+  ...initialState,
+  reactorId: 1
 }
 
 describe('actions via pact', () => {
@@ -54,13 +44,13 @@ describe('actions via pact', () => {
   it('can fetch the status of a thing', async () => {
     nock('http://mini-mes.resilience.com/')
       .get('/bioreactor/1').reply(200, {
-        fill_level: 10,
+        fill_percent: 10,
         pH: 7,
         pressure: 12,
         temperature: 32
       })
-      .get('/bioreactor/1/input-valve').reply(200, { status: 'open' })
-      .get('/bioreactor/1/output-valve').reply(200, { status: 'closed' })
+      .get('/bioreactor/1/input-valve').reply(200, { state: 'open' })
+      .get('/bioreactor/1/output-valve').reply(200, { state: 'closed' })
 
     const statusThunk = fetchStatus()
     const dispatchFake = jest.fn()
