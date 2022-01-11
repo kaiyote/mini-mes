@@ -1,0 +1,25 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - 'plugin:react/recommended'
+  - 'plugin:react/jsx-runtime'
+  - 'plugin:testing-library/react'
+  - 'plugin:jest-dom/recommended'
+  - standard
+parser: '@typescript-eslint/parser'
+ignorePatterns:
+  - 'node_modules'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 12
+  sourceType: module
+  project: './tsconfig.json'
+plugins:
+  - react
+  - '@typescript-eslint'
+settings:
+  react:
+    version: 'detect'
+rules: {}
