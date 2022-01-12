@@ -2,6 +2,7 @@ import { formatDuration, Interval, intervalToDuration } from 'date-fns'
 import { ReactElement } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import { State } from '../../redux/state'
+import { round } from '../utils'
 
 export default function BatchRecord (): ReactElement | null {
   const state = useSelector<State, State>(s => s, shallowEqual)
@@ -25,8 +26,8 @@ export default function BatchRecord (): ReactElement | null {
       </thead>
       <tbody>
         <tr>
-          <td>{state.status.maxFillLevel}%</td>
-          <td>{state.status.temperatureRange[0]} - {state.status.temperatureRange[1]} C</td>
+          <td>{round(state.status.maxFillLevel)}%</td>
+          <td>{round(state.status.temperatureRange[0])} - {round(state.status.temperatureRange[1])} C</td>
           <td>{state.status.pHRange[0]} - {state.status.pHRange[1]} pH</td>
           <td>{state.status.pressureRange[0]} - {state.status.pressureRange[1]} kPa</td>
           <RunTime start={state.runTime.startTime!} end={state.runTime.stopTime!} />

@@ -8,7 +8,7 @@
     "lint": "concurrently npm:lint:*",
     "lint:js": "eslint . --ext .ts,.tsx",
     "lint:css": "stylelint './src/**/*.style.{ts,tsx}'",
-    "test": "API_HOST=http://127.0.0.1:1234 jest"
+    "test": "jest"
   },
   "dependencies": {
     "react": "^17.0.2",
