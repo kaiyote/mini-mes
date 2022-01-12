@@ -2,7 +2,7 @@ import { formatDuration, Interval, intervalToDuration } from 'date-fns'
 import { ReactElement } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import { State } from '../../redux/state'
-import { round } from '../utils'
+import { round, Table } from '../utils'
 
 export default function BatchRecord (): ReactElement | null {
   const state = useSelector<State, State>(s => s, shallowEqual)
@@ -10,7 +10,7 @@ export default function BatchRecord (): ReactElement | null {
   if (!state.done) return null
 
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
           <th>Maximum Fill Level</th>
@@ -37,7 +37,7 @@ export default function BatchRecord (): ReactElement | null {
           <CPP criterionMet={state.status.success} />
         </tr>
       </tbody>
-    </table>
+    </Table>
   )
 }
 

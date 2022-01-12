@@ -2,7 +2,7 @@ import { ReactElement, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { fetchStatus } from '../../redux/actions'
 import { State } from '../../redux/state'
-import { round } from '../utils'
+import { round, Table } from '../utils'
 import { Alert } from './alerts.style'
 
 interface ViewState {
@@ -40,8 +40,7 @@ export default function CurrentStatus (): ReactElement | null {
 
   return (
     <>
-      {alerts.map(a => <Alert key={a}>{a}</Alert>)}
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Current Fill Level</th>
@@ -58,7 +57,8 @@ export default function CurrentStatus (): ReactElement | null {
             <td>{round(temperature)} C</td>
           </tr>
         </tbody>
-      </table>
+      </Table>
+      {alerts.map(a => <Alert key={a}>{a}</Alert>)}
     </>
   )
 }
