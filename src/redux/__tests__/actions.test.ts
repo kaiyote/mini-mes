@@ -21,7 +21,7 @@ describe('actions via pact', () => {
     ${'output'} | ${'open'}     | ${'closed'}
     ${'output'} | ${'closed'}   | ${'open'}
   `('can toggle a valve as expected', async ({ valve, startingState, expectedState }: EachArgs) => {
-    nock('http://mini-mes.resilience.com/').put(`/bioreactor/1/${valve}-valve`, expectedState).reply(200)
+    nock('http://mini-mes.resilience.com/').put(`/bioreactor/1/${valve}-valve`, { state: expectedState }).reply(200)
 
     const toggleThunk = toggleValve(valve)
     const dispatchFake = jest.fn()
